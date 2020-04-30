@@ -1,0 +1,7 @@
+
+Cluster Health:
+
+  curl http://$HOSTNAME:9200/_cluster/health
+  curl http://$HOSTNAME:9200/_cat to print all the commands for the _cat APIs
+     curl http://$HOSTNAME:9200/_cat/nodes
+     curl http://$HOSTNAME:9200/_cat/nodes?v
