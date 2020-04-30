@@ -5,3 +5,15 @@ Cluster Health:
   curl http://$HOSTNAME:9200/_cat to print all the commands for the _cat APIs
      curl http://$HOSTNAME:9200/_cat/nodes
      curl http://$HOSTNAME:9200/_cat/nodes?v
+
+Cluster Security:
+  Cert Generation:
+  /usr/share/elasticsearch/bin/elasticsearch-certutil cert --name playground --out /etc/elasticsearch/certs/playground
+
+
+   12  sudo rpm --import https://artifacts.elastic.co/GPG-KEY-elasticsearch
+   18  curl -O https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.6.0-x86_64.rpm
+   19  rpm --install elasticsearch-7.6.0-x86_64.rpm 
+   20  sudo rpm --install elasticsearch-7.6.0-x86_64.rpm 
+   21  sudo systemctl daemon-reload
+   22  sudo systemctl enable elasticsearch.service
