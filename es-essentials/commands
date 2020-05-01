@@ -5,11 +5,18 @@ Cluster Health:
   curl http://$HOSTNAME:9200/_cat to print all the commands for the _cat APIs
      curl http://$HOSTNAME:9200/_cat/nodes
      curl http://$HOSTNAME:9200/_cat/nodes?v
+     curl https://$HOSTNAME:9200/_cat/indices?v
 
 Cluster Security:
   Cert Generation:
   /usr/share/elasticsearch/bin/elasticsearch-certutil cert --name playground --out /etc/elasticsearch/certs/playground
 
+  Config file:
+  xpack.security.enabled: true
+  xpack.security.transport.ssl.enabled: true
+  xpack.security.transport.ssl.verification_mode: certificate
+  xpack.security.transport.ssl.keystore.path: certs/playground
+  xpack.security.transport.ssl.truststore.path: certs/playground
 
    12  sudo rpm --import https://artifacts.elastic.co/GPG-KEY-elasticsearch
    18  curl -O https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.6.0-x86_64.rpm
@@ -17,3 +24,15 @@ Cluster Security:
    20  sudo rpm --install elasticsearch-7.6.0-x86_64.rpm 
    21  sudo systemctl daemon-reload
    22  sudo systemctl enable elasticsearch.service
+
+     47  vi /etc/filebeat/filebeat.yml 
+   48  filebeat modules enable system
+   49  filebeat setup
+   50  systemctl start filebeat
+   51  systemctl status filebeat
+   60  vi /etc/metricbeat/metricbeat.yml 
+   62  vi /etc/metricbeat/metricbeat.yml 
+   63  metricbeat setup
+   64  systemctl enable metric
+   65  systemctl enable metricbeat
+   66  systemctl start metricbeat
